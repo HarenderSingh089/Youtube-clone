@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import SearchPage from "./SearchPage";
+import Recommended from "./Recommended";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route
+          path="/search/:searchTerm"
+          element={
+            <div className="app__page">
+              <Sidebar />
+              <SearchPage />
+            </div>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <div className="app__page">
+              <Sidebar />
+              <Recommended />
+            </div>
+          }
+        />
+      </Routes>
+
+      {/* These were the three components we are going to make for front layout. */}
+      {/* Header */}
+      {/* Sidebar */}
+      {/* Recommended Videos*/}
+    </Router>
   );
 }
 
